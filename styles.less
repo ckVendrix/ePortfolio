@@ -155,7 +155,6 @@ main {
 
 .tooltip {
   position: relative;
-  display: inline-block;
 }
 
 /* Tooltip text */
@@ -168,12 +167,15 @@ main {
   padding: 5px 0;
   border-radius: 6px;
 
+
   /* Position the tooltip text */
+  display: inline;
   position: absolute;
   z-index: 1;
   bottom: 125%;
   left: 50%;
   margin-left: -60px;
+  color: @accent-color-white;
 
   /* Fade in tooltip */
   opacity: 0;
