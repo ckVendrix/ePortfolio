@@ -1,60 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet/less" type="text/css" href="styles.less" />
     <script src="less.min.js" type="text/javascript"></script>
     <title>Vendrix</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <img class="logo" src="/Media/Logo_blue.svg" />
-        <div class="logo-text">Vendrix PC</div>
+      <img class="logo" src="/Media/Logo_blue.svg" />
+      <div class="logo-text">Vendrix PC</div>
     </header>
     <main>
-        <section id="main"></section>
-        <section id="components">
-            <h2 class="section-title components-section">
-                <span>Komponenten</span>
-            </h2>
-            <p>sdfsdf</p>
-        </section>
-        <section id="images">
-            <h2 class="section-title images-section">Galerie</h2>
-        </section>
-        <section id="video">
-            <h2 class="section-title video-section">Video</h2>
-        </section>
-        <section id="build-lists">
-            <h2 class="section-title build-lists-section">Teilelisten</h2>
-        </section>
-    </main>
-    <aside>
+      <aside>
         <nav class="navigation">
-            <ul>
-                <li class="tooltip">
-                    <span class="tooltiptext">Start</span>
-                </li>
-                <li class="tooltip">
-                    <span class="tooltiptext">components</span></li>
-                <li class="tooltip">
-                    <span class="tooltiptext">images</span></li>
-                <li class="tooltip">
-                    <span class="tooltiptext">video</span></li>
-                <li class="tooltip">
-                    <span class="tooltiptext">build-lists</span></li>
-            </ul>
+          <ul>
+            <li class="tooltip">
+              <span class="tooltiptext">Start</span>
+            </li>
+            <li class="tooltip">
+              <span class="tooltiptext">Komponenten</span>
+            </li>
+            <li class="tooltip">
+              <span class="tooltiptext">Gallerie</span>
+            </li>
+            <li class="tooltip">
+              <span class="tooltiptext">Video</span>
+            </li>
+            <li class="tooltip">
+              <span class="tooltiptext">Teilelisten</span>
+            </li>
+          </ul>
         </nav>
         <div class="sidebar"></div>
-    </aside>
+      </aside>
+      <section id="main"></section>
+      <section id="components">
+        <h2 class="section-title components-section">
+          <span>Komponenten</span>
+        </h2>
+      </section>
+      <section id="images">
+        <h2 class="section-title images-section">Galerie</h2>
+        <label class="switch">
+          <input type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+        <div class="img-container">
+            <img id="img1" onclick="imgEditClick('img1', 'img1-unedit')" class="image" src="Media/sefgqh8ceq741.jpg">
+            <img id="img1-unedit" onclick="imgUneditClick('img1-unedit', 'img1')" class="image image-hidden" src="Media/f9zp9v9wz0u51.jpg">
+            <img id="img2" onclick="imgEditClick('img2', 'img2-unedit')" class="image" src="Media/sefgqh8ceq741.jpg">
+            <img id="img2-unedit" onclick="imgUneditClick('img2-unedit', 'img2')" class="image image-hidden" src="Media/f9zp9v9wz0u51.jpg">
+            <img id="img3" onclick="imgEditClick('img3', 'img3-unedit')" class="image" src="Media/sefgqh8ceq741.jpg">
+            <img id="img3-unedit" onclick="imgUneditClick('img3-unedit', 'img3')" class="image image-hidden" src="Media/f9zp9v9wz0u51.jpg">
+        </div>
+      </section>
+      <section id="video">
+        <h2 class="section-title video-section">Video</h2>
+      </section>
+      <section id="build-lists">
+        <h2 class="section-title build-lists-section">Teilelisten</h2>
+      </section>
+    </main>
     <footer>
-        <div class="footer"></div>
+      <div class="footer"></div>
     </footer>
-
-    <script src="color.js"></script>
-</body>
-
+    <script src="index.js" type="text/javascript"></script>
+  </body>
 </html>
