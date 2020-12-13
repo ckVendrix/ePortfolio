@@ -14,6 +14,7 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -27,6 +28,10 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: left;
+
+  @media screen and (max-width: 550px) {
+    width: 110px;
+  }
 
   .logo {
     height: 70px;
@@ -42,6 +47,19 @@ header {
     font-weight: bold;
     justify-self: left;
     font-size: 36px;
+    transition: font-size 300ms ease-out;
+
+    @media screen and (max-width: 900px) {
+      font-size: 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+      font-size: 24px;
+    }
+
+    @media screen and (max-width: 550px) {
+      opacity: 0;
+    }
   }
 
   &::after {
@@ -53,14 +71,19 @@ header {
     width: 70px;
     clip-path: polygon(100% 0, 0% 100%, 0 0);
     background-color: @accent-color-dark-black;
+
+    @media screen and (max-width: 550px) {
+      left: 110px;
+    }
   }
 }
 
 .navigation {
   position: fixed;
-  top: 50%;
+  top: 40%;
   left: 0;
   transform: translateY(-50%);
+  z-index: 20;
 
   ul {
     list-style-type: none;
@@ -69,7 +92,11 @@ header {
     margin-left: 8px;
 
     li {
-      background-color: @accent-color-cyan;
+      background: linear-gradient(
+        300deg,
+        mix(@accent-color-pink, @accent-color-cyan, 100%),
+        mix(@accent-color-pink, @accent-color-cyan, 20%)
+      );
       border-radius: 25px;
       height: 30px;
       width: 30px;
@@ -81,13 +108,13 @@ header {
 main {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: relative;
   width: 100%;
 
   aside {
     height: 100%;
     position: absolute;
-    z-index: 10;
+    z-index: 15;
 
     .sidebar {
       height: 100%;
@@ -110,8 +137,8 @@ main {
     display: flex;
     flex-direction: column;
 
-    &:nth-child(3),
-    &:nth-child(4) {
+    &:nth-child(2),
+    &:nth-child(3) {
       .section-title {
         span::before {
           background: linear-gradient(
@@ -123,8 +150,8 @@ main {
       }
     }
 
-    &:nth-child(5),
-    &:nth-child(6) {
+    &:nth-child(4),
+    &:nth-child(5) {
       .section-title {
         span::before {
           background: linear-gradient(
@@ -139,18 +166,32 @@ main {
     .section-title {
       position: relative;
       width: auto;
-      padding-left: 30%;
+      padding-left: 35%;
       color: @accent-color-cyan;
       font-family: "Cabin", sans-serif;
+      font-size: 32px;
 
       span::before {
         content: "";
         position: absolute;
         display: block;
-        width: 25px;
         left: 30%;
-        top: 2px;
-        height: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 25px;
+      }
+
+      span::after {
+        content: "";
+        position: absolute;
+        left: calc(30% + 20px);
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        transform: translate(-50%, -50%);
+        background-color: @background-color;
         border-radius: 25px;
       }
 
@@ -199,58 +240,120 @@ main {
   }
 }
 
+footer {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+}
+
 // Main section
 #main {
+  .content {
+    width: 50%;
+    padding: 10px 30px;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    z-index: 13;
+    transition: width 300ms ease-out;
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
   .side-image {
     position: absolute;
     right: 0;
-    width: 35%;
+    width: 70%;
     height: 100%;
+    transition: opacity 300ms ease-out;
 
-    .cut-line {
-      position: absolute;
-      left: calc(-20% - 8px);
-      top: 0;
-      height: 100%;
-      width: calc(20% + 16px);
+    @media screen and (max-width: 600px) {
+      opacity: 0.3;
     }
+
     .image-container {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%, 40% 40%);
+      // clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%, 40% 40%);
 
-      img {
+      .img-clip {
         position: absolute;
-        top: 50%;
-        right: 0;
-        max-width: 100%;
-        max-height: 100%;
+        left: 0;
+        top: -70px;
+        height: calc(100% + 70px);
+        width: 100%;
+        z-index: 11;
+        clip-path: polygon(55% 0, 100% 0, 100% 100%, 55% 90%, 40% 40%);
+
+        img {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          max-width: 100%;
+          max-height: 100%;
+          transform: translateY(-50%);
+        }
       }
 
-      .line-top {
+      .cut-line {
         position: absolute;
+        left: 0;
         top: 0;
-        left: 10%;
-        height: 43%;
-        width: 8px;
-        transform: rotate(20deg);
-        background: linear-gradient(
-          to bottom,
-          mix(@accent-color-pink, @accent-color-cyan, 0%),
-          mix(@accent-color-pink, @accent-color-cyan, 50%)
-        );
-      }
-      .line-bottom {
-        background: linear-gradient(
-          to bottom,
-          mix(@accent-color-pink, @accent-color-cyan, 50%),
-          mix(@accent-color-pink, @accent-color-cyan, 100%)
-        );
-      }
-      .circle {
+        height: 100%;
+        width: 100%;
+        z-index: 12;
+
+        .line {
+          position: absolute;
+          top: -70px;
+          left: 0;
+          height: calc(100% + 70px);
+          width: 100%;
+          background: linear-gradient(
+            to bottom,
+            mix(@accent-color-pink, @accent-color-cyan, 0%),
+            mix(@accent-color-pink, @accent-color-cyan, 100%)
+          );
+          clip-path: polygon(
+            55% 0,
+            calc(55% + 8px) 0,
+            calc(40% + 8px) 40%,
+            calc(55% + 8px) 90%,
+            55% 90%,
+            40% 40%
+          );
+        }
+        .circle {
+          position: absolute;
+          left: 55%;
+          top: 88%;
+          width: 40px;
+          height: 40px;
+          border-radius: 25px;
+          transform: translate(-30%, -10%);
+          background: linear-gradient(
+            to bottom,
+            mix(@accent-color-pink, @accent-color-cyan, 100%),
+            mix(@accent-color-pink, @accent-color-cyan, 0%)
+          );
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            transform: translate(-50%, -50%);
+            background-color: @background-color;
+            border-radius: 25px;
+          }
+        }
       }
     }
   }
@@ -260,11 +363,21 @@ main {
 
 .switch {
   position: absolute;
-  top: 50px;
+  top: 70px;
   right: 30px;
   display: inline-block;
   width: 60px;
   height: 34px;
+
+  &::after {
+    content: "Bearbeitet";
+    position: absolute;
+    left: calc(-100% - 40px);
+    font-size: 20px;
+    color: #fff;
+    top: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 }
 
 .switch input {
@@ -321,15 +434,136 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+#components {
+  height: 150vh;
+
+  .component-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 1em;
+    padding: 1em 2em;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 700px) {
+      grid-template-columns: 100%;
+    }
+
+    .component {
+      border: solid 2px @accent-color-cyan;
+      display: flex;
+      flex-direction: row;
+      // height: 120px;
+
+      .img {
+        flex-grow: 1;
+        border-right: solid 2px @accent-color-cyan;
+      }
+
+      .description {
+        flex-grow: 2;
+      }
+    }
+  }
+}
+
+#video {
+  #video-player {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+#build-lists {
+  .button-container {
+    width: 100%;
+    display: flex;
+    .gradient-button {
+      margin: 0 auto;
+    }
+  }
+  .parts-card-list {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+
+    .part-cart {
+      position: relative;
+      margin: auto 0;
+      height: 350px;
+      width: 250px;
+      .content {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background-color: #7a7a7a;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        width: calc(100% + 10px);
+        height: calc(100% + 10px);
+
+        background: linear-gradient(
+          300deg,
+          mix(@accent-color-pink, @accent-color-cyan, 100%),
+          mix(@accent-color-pink, @accent-color-cyan, 20%)
+        );
+      }
+    }
+  }
+}
+
+// Bottom section
+
+#bottom-section {
+  height: auto;
+
+  .bottom-section {
+    transform: translateY(calc(100% + 5px));
+    &::before {
+      width: 90%;
+      background: linear-gradient(
+        to right,
+        mix(@accent-color-pink, @accent-color-cyan, 100%),
+        mix(@accent-color-pink, @accent-color-cyan, 0%)
+      );
+    }
+    span {
+      &::before {
+        left: 90%;
+        background: linear-gradient(
+          to right,
+          mix(@accent-color-pink, @accent-color-cyan, 0%),
+          mix(@accent-color-pink, @accent-color-cyan, 80%)
+        );
+      }
+      &::after {
+        left: calc(90% + 20px);
+      }
+    }
+  }
+}
+
 /* Tooltip */
 
 .tooltip {
   position: relative;
+  z-index: 15;
+  cursor: pointer;
 }
 
-/* Tooltip text */
 .tooltip .tooltiptext {
-  visibility: hidden;
   width: 120px;
   text-align: center;
   background-color: @accent-color-dark-black;
@@ -338,61 +572,103 @@ input:checked + .slider:before {
   padding: 5px 0;
   border-radius: 6px;
 
-  /* Position the tooltip text */
   display: block;
   position: absolute;
-  left: 125%;
+  left: 100%;
   z-index: 1;
   color: @accent-color-white;
 
-  /* Fade in tooltip */
+  transform: scale(0.8);
+  transform-origin: left;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 200ms ease-out, left 200ms ease-out,
+    transform 200ms ease-out;
+
+  pointer-events: none;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover {
   .tooltiptext {
-    visibility: visible;
     opacity: 1;
+    left: 125%;
+    transform: scale(1);
   }
 }
 
 /* Gallery */
-
-.img-container {
-  height: calc(100% - 50px);
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-
-  @media screen and (max-width: 800px) {
-    flex-direction: column;
-  }
-
-  .individual-img-container {
-    max-width: 100%;
-    max-height: 100%;
-    height: 30%;
-    margin: auto 0;
-
-    @media screen and (min-width: 1100px) {
-      height: 40%;
-    }
-
-    @media screen and (max-width: 800px) {
-      margin: 0 auto;
-    }
-
+#images {
+  &.edited {
     .image {
-      max-width: 100%;
-      max-height: 100%;
+      display: none !important;
     }
 
     .image-hidden {
-      display: none;
+      display: block !important;
     }
+  }
+
+  .img-container {
+    height: calc(100% - 50px);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    @media screen and (max-width: 800px) {
+      flex-direction: column;
+    }
+
+    .individual-img-container {
+      max-width: 100%;
+      max-height: 100%;
+      height: 30%;
+      margin: auto 0;
+
+      @media screen and (min-width: 1100px) {
+        height: 40%;
+      }
+
+      @media screen and (max-width: 800px) {
+        margin: 0 auto;
+      }
+
+      .image {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .image-hidden {
+        display: none;
+      }
+    }
+  }
+}
+
+.gradient-button {
+  all: unset;
+  width: auto;
+  height: 40px;
+  color: #fff;
+  border-radius: 1px;
+  background: linear-gradient(
+    300deg,
+    mix(@accent-color-pink, @accent-color-cyan, 100%),
+    mix(@accent-color-pink, @accent-color-cyan, 20%)
+  );
+  padding: 10px 20px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  background-size: 100%;
+  transition: transform 200ms, background-size 300ms ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  &:focus {
+    transform: scale(0.95);
   }
 }

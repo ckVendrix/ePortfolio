@@ -1,11 +1,14 @@
-function imgEditClick(imgEditId, imgUneditId) {
-    document.getElementById(imgEditId).classList.add('image-hidden');
-    document.getElementById(imgUneditId).classList.remove('image-hidden');
-
+function onEditChange(e) {
+  document.getElementById("images").classList.remove("edited");
+  if (e.target.checked) {
+    document.getElementById("images").classList.add("edited");
+  }
 }
 
-function imgUneditClick(imgUneditId, imgEditId) {
-    document.getElementById(imgEditId).classList.remove('image-hidden');
-    document.getElementById(imgUneditId).classList.add('image-hidden');
+document
+  .getElementById("edit-checkbox")
+  .addEventListener("change", onEditChange);
 
+function goToSection(id) {
+  window.location.hash = id;
 }
