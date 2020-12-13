@@ -673,7 +673,7 @@ input:checked + .slider:before {
   }
 }
 
-.popup {
+#popup {
   position: fixed;
 
   left: 0;
@@ -682,7 +682,6 @@ input:checked + .slider:before {
   height: 100%;
   z-index: 50;
   background-color: #000000a1;
-  display: none;
 
   .popup-inner {
     position: relative;
@@ -710,4 +709,8 @@ input:checked + .slider:before {
       height: 100%;
     }
   }
+}
+
+.popup-hidden {
+  display: none;
 }

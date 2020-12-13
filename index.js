@@ -5,6 +5,14 @@ function onEditChange(e) {
   }
 }
 
+function onPopUpOpen() {
+  document.getElementById("popup").classList.remove("popup-hidden");
+}
+
+function onPopUpClose() {
+  document.getElementById("popup").classList.add("popup-hidden");
+}
+
 document
   .getElementById("edit-checkbox")
   .addEventListener("change", onEditChange);
