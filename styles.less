@@ -255,7 +255,7 @@ footer {
   .content {
     width: 50%;
     padding: 10px 30px;
-    color: #fff;
+    color: @accent-color-white;
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
     z-index: 13;
@@ -480,9 +480,14 @@ input:checked + .slider:before {
 }
 
 #build-lists {
+  @media screen and (max-width: 815px) {
+    height: auto !important;
+  }
+
   .button-container {
     width: 100%;
     display: flex;
+
     .gradient-button {
       margin: 0 auto;
     }
@@ -495,18 +500,59 @@ input:checked + .slider:before {
     box-sizing: border-box;
     justify-content: space-evenly;
 
-    .part-cart {
+    @media screen and (max-width: 815px) {
+      flex-direction: column;
+    
+      .part-card {
+        margin: 20px auto !important;
+      }
+    }
+
+    .part-card {
       position: relative;
       margin: auto 0;
       height: 350px;
       width: 250px;
+
       .content {
         position: absolute;
         height: 100%;
         width: 100%;
         left: 0;
         top: 0;
-        background-color: #7a7a7a;
+        color: @accent-color-white;
+        // font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+
+        h2 {
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            height: 3px;
+            width: 50%;
+            background-color: @accent-color-white;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+
+        div {
+          margin: 0 0 15px 0;
+          position: relative;
+          &:after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            height: 1px;
+            width: 60%;
+            background-color: @accent-color-white;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
       }
 
       &::before {
